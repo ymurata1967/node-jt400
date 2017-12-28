@@ -1,11 +1,15 @@
 package nodejt400;
 
 import java.beans.PropertyVetoException;
+import java.math.BigDecimal;
 import java.sql.Connection;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 
 import com.ibm.as400.access.AS400;
 import com.ibm.as400.access.AS400DataType;
-import com.ibm.as400.access.QSYSObjectPathName;
 import com.ibm.as400.access.AS400JDBCConnectionHandle;
 import com.ibm.as400.access.AS400Message;
 import com.ibm.as400.access.AS400PackedDecimal;
@@ -14,12 +18,7 @@ import com.ibm.as400.access.AS400Text;
 import com.ibm.as400.access.AS400ZonedDecimal;
 import com.ibm.as400.access.ProgramCall;
 import com.ibm.as400.access.ProgramParameter;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
-
-import java.math.BigDecimal;
+import com.ibm.as400.access.QSYSObjectPathName;
 
 public class Pgm
 {
@@ -206,7 +205,7 @@ class TextPgmParam extends PgmParam
   public TextPgmParam(String name, Props paramDef)
   {
     super(name, paramDef);
-    parser = new AS400Text(paramDef.getFirstInt("size", "precision"), "Cp871");
+    parser = new AS400Text(paramDef.getFirstInt("size", "precision"));	//Japanese
   }
 
   @Override
